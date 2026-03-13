@@ -5,6 +5,7 @@
       <li><router-link to="/">Dashboard</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
       <li><router-link to="/settings">Settings</router-link></li>
+      <li><router-link to="/congregations">Congregations</router-link></li>
       <!-- Add more sidebar links as needed -->
     </ul>
   </aside>

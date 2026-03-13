@@ -17,6 +17,12 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'), // AboutView will render inside <router-view> in App.vue
     },
+    {
+      path: '/congregations',
+      name: 'congregations',
+      // Lazy-load the new view component
+      component: () => import('../views/CongregationsView.vue'),
+    },
     // You can add more routes here for other pages
     // {
     //   path: '/profile',
@@ -27,6 +33,7 @@ const router = createRouter({
     //   path: '/settings',
     //   name: 'settings',
     //   component: () => import('../views/SettingsView.vue'), // Example new route
+    // },
     // },
   ],
 })
