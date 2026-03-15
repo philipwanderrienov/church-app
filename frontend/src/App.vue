@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import AppSidebar from './components/AppSidebar.vue'
 import AppHeader from './components/AppHeader.vue'
 
-const sidebarVisible = ref(true)
+const sidebarVisible = ref(false)
 
 function toggleSidebar() {
   sidebarVisible.value = !sidebarVisible.value
@@ -32,7 +32,6 @@ function toggleSidebar() {
 <style>
 :root {
   --sidebar-width: 20rem; /* Default PrimeVue Drawer width */
-  --sidebar-transition-duration: 0.2s;
 }
 
 .app-layout {
@@ -58,15 +57,6 @@ body,
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures the wrapper takes full viewport height */
-}
-
-.main-content-container {
-  transition: margin-left var(--sidebar-transition-duration) ease-in-out;
-  margin-left: 0;
-}
-
-.app-layout.sidebar-open .main-content-container {
-  margin-left: var(--sidebar-width);
 }
 
 .main-content {

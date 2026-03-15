@@ -14,12 +14,15 @@
   <Drawer
     :visible="visible"
     @update:visible="$emit('update:visible', $event)"
-    :modal="false"
-    :show-close-icon="false"
-    :dismissable="false"
+    :modal="true"
+    :show-close-icon="true"
+    :dismissable="true"
   >
     <template #container>
-      <div class="flex flex-col h-full">
+      <div
+        class="flex flex-col h-full bg-surface-0 dark:bg-surface-900"
+        style="width: var(--sidebar-width)"
+      >
         <div class="flex items-center justify-between px-6 pt-4 shrink-0">
           <span class="inline-flex items-center gap-2">
             <!-- <svg
