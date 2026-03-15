@@ -1,25 +1,45 @@
+<script setup>
+import { ref } from 'vue'
+import AppSidebar from './components/AppSidebar.vue'
+import AppHeader from './components/AppHeader.vue'
+
+const sidebarVisible = ref(true)
+
+function toggleSidebar() {
+  sidebarVisible.value = !sidebarVisible.value
+}
+</script>
+
 <template>
-  <div id="app-wrapper">
-    <AppHeader />
-    <div class="main-layout-content">
-      <AppSidebar />
-      <main class="page-content-area">
-        <!-- This is where the component for the current route will be rendered -->
+  <!-- <AppHeader @toggle-sidebar="toggleSidebar" /> -->
+  <div class="app-layout" :class="{ 'sidebar-open': sidebarVisible }">
+    <AppSidebar v-model:visible="sidebarVisible" />
+    <div class="main-content-container">
+      <AppHeader @toggle-sidebar="toggleSidebar" />
+      <main class="main-content">
         <router-view />
       </main>
     </div>
-    <AppFooter />
   </div>
 </template>
 
-<script setup>
-import AppHeader from './components/AppHeader.vue'
-import AppSidebar from './components/AppSidebar.vue'
-import AppFooter from './components/AppFooter.vue'
-</script>
+<!-- <template>
+  <div id="app-wrapper">
+    <AppHeader />
+  </div>
+</template> -->
 
 <style>
-/* Global styles for the layout */
+:root {
+  --sidebar-width: 20rem; /* Default PrimeVue Drawer width */
+  --sidebar-transition-duration: 0.2s;
+}
+
+.app-layout {
+  position: relative;
+  min-height: 100vh;
+}
+
 html,
 body,
 #app {
@@ -40,15 +60,16 @@ body,
   min-height: 100vh; /* Ensures the wrapper takes full viewport height */
 }
 
-.main-layout-content {
-  display: flex;
-  flex: 1; /* Allows this section to grow and push the footer down */
+.main-content-container {
+  transition: margin-left var(--sidebar-transition-duration) ease-in-out;
+  margin-left: 0;
 }
 
-.page-content-area {
-  flex: 1; /* Allows the content area to take up remaining space */
-  padding: 20px;
-  background-color: #ffffff;
-  overflow-y: auto; /* Add scroll for long content */
+.app-layout.sidebar-open .main-content-container {
+  margin-left: var(--sidebar-width);
+}
+
+.main-content {
+  padding: 1.5rem;
 }
 </style>

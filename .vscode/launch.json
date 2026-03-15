@@ -11,20 +11,28 @@
             "mode": "auto",
             "program": "${workspaceFolder}/backend/cmd/api",
             "cwd": "${workspaceFolder}/backend",
-            "envFile": "${workspaceFolder}/backend/.env"
+            "serverReadyAction": {
+                "pattern": "Server starting on .*:8080",
+                "uriFormat": "http://localhost:8080/swagger/index.html",
+                "action": "openExternally"
+            }
         },
         {
             "name": "Debug Frontend",
             "type": "chrome",
             "request": "launch",
+            "preLaunchTask": "start-frontend",
             "url": "http://localhost:5173",
             "webRoot": "${workspaceFolder}/frontend",
             "sourceMaps": true,
             "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
+                "webpack:///src/*": "${webRoot}/src/*",
+                "webpack:///*": "${webRoot}/*"
             }
         }
     ],
+    // The "compounds" section allows you to launch multiple debug configurations at once.
+    // "Debug Full Stack" will start both "Debug Backend (Go)" and "Debug Frontend".
     "compounds": [
         {
             "name": "Debug Full Stack",

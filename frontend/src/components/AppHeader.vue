@@ -1,8 +1,19 @@
 <template>
   <header class="app-header">
     <div class="header-content">
-      <h1>My Awesome SPA</h1>
-      <nav>
+      <div class="flex align-items-center gap-4">
+        <Button
+          icon="pi pi-bars"
+          @click="$emit('toggle-sidebar')"
+          text
+          rounded
+          aria-label="Toggle Sidebar"
+          class="header-button"
+          label=""
+        />
+        <!-- <h1>Church Apps</h1> -->
+      </div>
+      <nav class="flex align-items-center">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
         <!-- Add more navigation links here -->
@@ -12,7 +23,8 @@
 </template>
 
 <script setup>
-// No script logic needed for a simple header
+import Button from 'primevue/button'
+defineEmits(['toggle-sidebar'])
 </script>
 
 <style scoped>
@@ -27,6 +39,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.header-button {
+  color: white;
 }
 
 .app-header h1 {
