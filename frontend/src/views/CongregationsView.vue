@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import apiService from '../api/apiService.js'
+import Drawer from 'primevue/drawer'
 
-const congregations = ref([])
+const congregations = ref([]) // ref() means to make it reactive, so the UI updates when it changes.
+// Vue auto-unwraps refs in the template, so we can use congregations directly in the template without .value.
 const loading = ref(true)
 const error = ref(null)
 
@@ -11,9 +13,11 @@ onMounted(async () => {
     // Fetch congregations using our new API service
     const response = await apiService.getCongregations()
 
-    // axios automatically parses the JSON. The response from our Go backend
-    // is in `response.data`, and the array of congregations is in `response.data.data`.
-    congregations.value = response.data.data
+    // Assign the data to the reactive ref.
+    // We use response.data if the backend wraps the array in a "data" field,
+    // otherwise we use response directly if it returns a plain array.
+    congregations.value = response.data || response
+    console.log('Fetched congregations:', congregations.value)
   } catch (e) {
     // Enhance error handling
     if (e.response) {

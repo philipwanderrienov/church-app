@@ -11,8 +11,14 @@ const apiClient = axios.create({
 
 // Export an object with methods for each API endpoint
 export default {
-  getCongregations() {
-    return apiClient.get('/congregations')
+  async getCongregations() {
+    try {
+      const response = await apiClient.get('/congregations')
+      return response.data
+    } catch (error) {
+      console.error('Error fetching congregations:', error)
+      throw error
+    }
   },
   // You can add other API calls here as your app grows
   // getCongregation(id) { ... }
