@@ -21,7 +21,9 @@
 </template> -->
 
 <template>
-  <Menubar :model="items" />
+  <!-- :model sama aja dengan v-bind:model || begitupun :pt sama dengan v-bind:pt-->
+   <!-- :pt berfungsi untuk bisa langsung custom css bawaan primevue utk si Menubar nya. -->
+  <Menubar :model="items" :pt="{ root: { class: 'justify-end', style: { 'border-radius': '0 0 1rem 1rem', 'padding': '1rem' } } }" />
 </template>
 
 <script setup>
