@@ -3,6 +3,16 @@ import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+
+  scrollBehavior(to, from, savedPosition) {
+    // ini untuk scroll ke section tertentu ketika kita klik link di navbar, misalnya klik "About" maka akan scroll ke section about di HomeView
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }
+  },
   routes: [
     {
       path: '/',
@@ -12,16 +22,14 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'), // AboutView will render inside <router-view> in App.vue
+      // component: () => import('../views/AboutView.vue'),  // ini kalau mau pakai halaman terpisah untuk about, tapi karena kita sudah buat section about di HomeView, kita bisa langsung scroll ke situ
+      redirect: { name: 'home', hash: '#about' },
     },
     {
       path: '/congregations',
       name: 'congregations',
-      // Lazy-load the new view component
-      component: () => import('../views/CongregationsView.vue'),
+      // component: () => import('../views/CongregationsView.vue'),  // ini kalau mau pakai halaman terpisah untuk about, tapi karena kita sudah buat section about di HomeView, kita bisa langsung scroll ke situ
+      redirect: { name: 'home', hash: '#congregations' },
     },
     // You can add more routes here for other pages
     // {
