@@ -49,7 +49,7 @@
                 }"
                 class="p-4 flex items-center justify-between text-surface-500 dark:text-surface-400 cursor-pointer p-ripple"
               >
-                <span class="font-medium">FAVORITES</span>
+                <span class="font-medium text-sm">FAVORITES</span>
                 <i class="pi pi-chevron-down"></i>
               </div>
               <ul class="list-none p-0 m-0 overflow-hidden hidden">
@@ -193,7 +193,7 @@
                 }"
                 class="p-4 flex items-center justify-between text-surface-500 dark:text-surface-400 cursor-pointer p-ripple"
               >
-                <span class="font-medium">APPLICATION</span>
+                <span class="font-medium text-sm">APPLICATION</span>
                 <i class="pi pi-chevron-down"></i>
               </div>
               <ul class="list-none p-0 m-0 overflow-hidden hidden">
